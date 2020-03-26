@@ -26,7 +26,7 @@ function parseHtml(html)
     console.log("Parsing");
 
     let parse=cheerio.load(html);
-    let table=parse(parse(".description")[0]);
+    let table=parse(".item-wrapper .description").html();
     let maxWick=0;
     let maxWickTaker="";
     // for(let i=0;i<table.length;i++)
@@ -41,7 +41,7 @@ function parseHtml(html)
     //     }
     // }
     // data.push(table.find("tbody"));
-    console.log(table.html());
+    console.log(table);
     fs.writeFileSync("comment.html",table);
     // console.log(data);
 }

@@ -1,7 +1,7 @@
 let fs = require("fs");
 let path = require("path");
 let uniqid = require("uniqid");
-module.exports.untreefy = function() {
+module.exports.untreefy = function () {
   console.log("untreefy command has been Called");
   let src = arguments[0];
   let dest = arguments[1];
@@ -23,7 +23,8 @@ function untreefyFolder(src, dest, node) {
     node.newName = uniqueName;
     //copy file from src to dest=> and rename them
     fs.copyFileSync(src, path.join(dest, uniqueName));
-  } else {
+  }
+  else {
     node.isFile = false;
     node.name = path.basename(src);
     node.children = [];
