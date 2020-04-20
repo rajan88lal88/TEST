@@ -1,0 +1,55 @@
+{
+    "name": "d10",
+    "isFile": false,
+    "children": [
+        {
+            "name": "d20",
+            "isFile": false,
+            "children": [
+                {
+                    "name": "d40",
+                    "isFile": false,
+                    "children": [
+                        {
+                            "isFile": true,
+                            "oldName": "f2.txt",
+                            "newName": "11idlj7eck95qt43a"
+                        }
+                    ]
+                },
+                {
+                    "name": "d50",
+                    "isFile": false,
+                    "children": []
+                }
+            ]
+        },
+        {
+            "name": "d30",
+            "isFile": false,
+            "children": [
+                {
+                    "name": "d60",
+                    "isFile": false,
+                    "children": [
+                        {
+                            "isFile": true,
+                            "oldName": "f3.txt",
+                            "newName": "11idlj7eck95qt43e"
+                        }
+                    ]
+                },
+                {
+                    "name": "d70",
+                    "isFile": false,
+                    "children": []
+                }
+            ]
+        },
+        {
+            "isFile": true,
+            "oldName": "f1.txt",
+            "newName": "11idlj7eck95qt43g"
+        }
+    ]
+}

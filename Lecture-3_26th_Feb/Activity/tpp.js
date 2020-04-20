@@ -1,9 +1,9 @@
 let cmd = process.argv[2];
-let viewFile = require("./commands/view");
-let treefyFile = require("./commands/treefy");
-let untreefyFile = require("./commands/untreefy");
-let monitorFile = require("./commands/monitor");
-let helpFile = require("./commands/help");
+let view = require("./commands/view");
+let treefy = require("./commands/treefy");
+let untreefy = require("./commands/untreefy");
+let monitor = require("./commands/monitor");
+let help = require("./commands/help");
 
 switch (cmd) {
   case "view":
