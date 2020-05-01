@@ -1,0 +1,22 @@
+Promises Basics
+
+Promise =>assurance of a work that could be completed in future
+
+Promise -> states
+    1. Initial:Pending [*]
+    2. Final -> resolved ,reject[*]
+        if you call resolve => final => promise will resolve with value passed in resolve fn[*]
+        if you call reject => final => promise will reject with value passed in reject fn[*]
+
+To consume a promise we have two Synchronous functions then/catch . They are used to register cb fxn to that promise
+cb of any promise will only execute when promise recieved from it get settled
+cb fn passed through then and catch are async
+then and catch also return a promise
+final state of promise returned from then/catch depends upon value returned from there cb
+        it cb returns then promise will resolve into 
+            val=>val
+            nothing=> undefined
+            promise=> promise
+        err
+            fcb=>will call fcb and err as message
+            err=>propogate
