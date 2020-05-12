@@ -5,7 +5,10 @@
   "main": "index.js",
   "dependencies": {
     "chromedriver": "^81.0.0",
+    "http": "0.0.1-security",
+    "https": "^1.0.0",
     "puppeteer": "^3.0.2",
+    "puppeteer-autoscroll-down": "^0.1.5",
     "selenium-webdriver": "^4.0.0-alpha.7"
   },
   "devDependencies": {},

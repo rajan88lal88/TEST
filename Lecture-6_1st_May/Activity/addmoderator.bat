@@ -1,0 +1,1 @@
+node puppet.js credentials_hackerrank.json rajan88lal88

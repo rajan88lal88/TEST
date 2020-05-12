@@ -7,9 +7,11 @@ let challenges = [];
 
 
 (async function () {
+    
     const browser = await puppeteer.launch({
         headless: false,
-        args: ["--incognito"]
+        args: ["--start-maximized"],
+        slowMo:50
     })
     let pages = await browser.pages();
     let page = pages[0];
@@ -42,43 +44,38 @@ let challenges = [];
     await waitForLoader(page);
     console.log("challenges page opened");
     let list = [];
-    list = await navigatePages(page);
+    list = await navigatePages(page,browser);
     //opening challenges page
     // await page.waitForNavigation({ waitUntil: "networkidle0" });
-    console.log("all question fetched : " + challenges.length);
-    await addModerator(page, moderator);
-
+    console.log("moderators added to these questions : " + challenges.length);
+    
+    await Promise.all(allmoderatorP);
 
 })()
 
-async function addModerator(page, moderator) {
-    for (let i = 0; i < challenges.length; i++) {
-        
-        await challengeModerator(page, moderator,"https://hackerrank.com"+challenges[i]);
-        // while(true){}
-    }
-
-}
 async function challengeModerator(page, moderator,url) {
-    page.goto(url);
+    await page.goto(url);
     // waitForLoader();
-    await page.waitForNavigation({ waitUntil: "networkidle0" });
+    // await page.waitForNavigation({ waitUntil: "networkidle0" });
     await page.waitForSelector(".tabs-cta-wrapper");
     let tabs = await page.$$(".tabs-cta-wrapper li");
     await tabs[1].click();
-    waitForLoader();
-    await page.waitForNavigation({ waitUntil: "networkidle0" });
+    // waitForLoader();
     await page.waitForSelector("#moderator");
-    await page.type("#moderator", moderator);
-    // await page.press("Enter");
-    await page.click("#content div section div div div.formgroup.horizontal.row div div button");
-    await page.click("#content div div div div button.save-challenge.btn.btn-green");
+    //
+    await page.waitForSelector("#content div section div div div.formgroup.horizontal.span12 div div:nth-child(2) div.moderator-close a i");
+    await page.click("#content div section div div div.formgroup.horizontal.span12 div div:nth-child(2) div.moderator-close a i");
 
+    // await page.type("#moderator", moderator);
+    // // await page.("Enter");
+    // await page.click("#content div section div div div.formgroup.horizontal.row div div button");
+    // await page.waitForSelector("#content div div div div button.save-challenge.btn.btn-green");
+    await page.click("#content div div div div button.save-challenge.btn.btn-green");
+    await page.close();
 }
-async function navigatePages(page) {
-    let list = [];
+async function navigatePages(page,browser) {
     while (true) {
-        list.concat(await getquestion(page));
+        await getquestion(page,browser);
         await page.waitForSelector(".pagination ul a");
         let pagination = await page.$$(".pagination ul a");
         console.log("pagination length :" + pagination.length);
@@ -88,7 +85,7 @@ async function navigatePages(page) {
         // status=await pagination[pagination.length-2].getProperty('class');
         console.log(status);
         if (status == null) {
-            return list;
+            return;
         }
         else {
             let href = await page.evaluate(function (ele) {
@@ -99,8 +96,8 @@ async function navigatePages(page) {
         }
     }
 }
-
-async function getquestion(page) {
+let allmoderatorP=[];
+async function getquestion(page,browser) {
     await page.waitForSelector('[class="backbone block-center"]')
     let quesList = await page.$$('[class="backbone block-center"]');
     console.log(quesList.length);
@@ -110,9 +107,12 @@ async function getquestion(page) {
             return ele.getAttribute("href");
         }, quesList[i]);
         // console.log(link);
+
+        let newTab=await browser.newPage();
+        allmoderatorP.push (challengeModerator(newTab,"rajan88lal88","https://www.hackerrank.com"+link));
         challenges.push(link);
     }
-    return quesList;
+
 }
 
 

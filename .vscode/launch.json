@@ -11,8 +11,8 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\Lecture-5_27-Apr_promise_await\\Activity\\hackerrank_moderator.js",
-            "args" : ["credentials.json", "rajan88lal88"]
+            "program": "C:\\Users\\rajan\\OneDrive\\College\\PEP_CODING\\TPP\\Lecture-6_1st_May\\Activity\\puppet.js",
+            "args" : [".\\Lecture-6_1st_May\\Activity\\credentials.json", "rajan88lal88"]
         }
     ]
 }

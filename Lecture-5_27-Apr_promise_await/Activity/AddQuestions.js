@@ -6,6 +6,7 @@ let driver = bldr.forBrowser("chrome").build();
 
 let cFile = process.argv[2];
 let questionsFile = process.argv[3];
+let questions = require("./questions");
 (async function () {
   try {
     // login
@@ -21,8 +22,9 @@ let questionsFile = process.argv[3];
     let manageTabs = await driver.findElements(swd.By.css(".administration header ul li"));
     await manageTabs[1].click();
     let ManageChallengePage = await driver.getCurrentUrl();
-    let questions = require(questionsFile);
+    
     // Json file read
+    console.log("Question file read");
     for (let i = 0; i < questions.length; i++) {
       await driver.get(ManageChallengePage)
       await waitForLoader();
