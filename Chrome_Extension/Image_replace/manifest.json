@@ -1,0 +1,32 @@
+{
+    "name": "Test_Ext",
+    "version": "1.0",
+    "description": "testing: change all images on webpage.",
+    "manifest_version": 2,
+    "content_scripts": [
+        {
+            "matches": [
+                "https://*.nytimes.com/*"
+            ],
+            "css": [
+                "myStyles.css"
+            ],
+            "js": [
+                "contentScript.js"
+            ]
+        }
+    ],
+    "browser_action": {
+        "default_popup": "hello.html"
+       
+    },
+    "background": {
+        "scripts": ["background.js"],
+        "persistent": true
+      },
+
+    "web_accessible_resources":[
+        "images/*"
+    ]
+
+}

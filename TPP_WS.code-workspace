@@ -13,6 +13,7 @@
 			"**/.project": true,
 			"**/.settings": true,
 			"**/.factorypath": true
-		}
+		},
+		"liveServer.settings.multiRootWorkspaceName": "TPP"
 	}
 }

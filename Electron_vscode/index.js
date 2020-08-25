@@ -52,6 +52,7 @@ $(document).ready(async function () {
     });
     const os = require('os');
     const pty = require('node-pty');
+    
     // UI 
    const Terminal = require('xterm').Terminal;
     // Initialize node-pty with an appropriate shell
@@ -67,7 +68,11 @@ $(document).ready(async function () {
     });
     // console.log(process.env);
     // Initialize xterm.js and attach it to the DOM
+    let {FitAddon}=require('xterm-addon-fit');
     const xterm = new Terminal();
+    const fitAddon= new FitAddon();
+    xterm.loadAddon(fitAddon);
+    
     // document
     xterm.open(document.getElementById('terminal'));
     // Setup communication between xterm.js and node-pty
@@ -79,6 +84,8 @@ $(document).ready(async function () {
     ptyProcess.on('data', function (data) {
         xterm.write(data);
     });
+
+    fitAddon.fit();
 
 
 })
