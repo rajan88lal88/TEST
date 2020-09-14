@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Document</title>
+        <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script type="text/babel">
+            let arr=[{name:"rajan", age:"23"},{name:"rajan1", age:"23"},{name:"rajan2", age:"23"}]
+            function Hello(props) {
+                return <h1>Hello {props.name} your age is {props.age}</h1>;
+            }
+            function HelloParent(props){
+                let {data}=props;
+                return(
+                    <React.Fragment>
+                        {data.map(function(ele){
+                            return <Hello name={ele.name} age={ele.age}></Hello>;
+                        })}
+                    </React.Fragment>
+                )
+            }
+            //add to page
+            ReactDOM.render(<HelloParent data={arr}></HelloParent>,document.getElementById("root"))
+        </script>
+    </body>
+</html>

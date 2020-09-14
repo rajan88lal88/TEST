@@ -1,0 +1,35 @@
+    USERS
+    *   handle: VARCHAR(100) NN Unique
+    *   uid: VARCHAR (32) PK
+    *   email_id: VARCHAR(50) Unique
+    *   phone: BIGINT(10) Unique
+    *   is_verified: Boolean Default true
+    *   purl:VARCHAR(255);
+
+    POST
+    *   pid: VARCHAR(32) PK
+    *   imgurl: VARCHAR(255) NN
+    *   author_id:VARCHAR(32) NN INDEX
+    *   created_at: DATETIME NN
+    *   desc: VARCHAR(200)
+
+    COMMENTS
+    *   cid: VARCHAR(32) PK
+    *   desc: VARCHAR(255) NN
+    *   author_id:VARCHAR(32) NN
+    *   pid: VARCHAR(32) NN INDEX
+    *   time: DATETIME NN
+
+    Post Liker Map
+    *   uid:VARCHAR(32) NN
+    *   pid:VARCHAR(32) NN
+    
+
+    USER follower map table
+    *   uid:VARCHAR(32) NN INDEX
+    *   follower_uid: VARCHAR(32) NN
+    *   is_pending: Boolean Default true
+
+    User following map table
+    *   uid:VARCHAR(32) NN INDEX
+    *   following_id: VARCHAR(32) NN
